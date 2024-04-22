@@ -3,7 +3,8 @@ import { useRef, useEffect } from "react";
 // eslint-disable-next-line react/prop-types
 const VideoPlayer = ({ videoId }) => {
   const videoRef = useRef(null);
-
+  const backIP = import.meta.env.VITE_BACK_IP;
+  console.log(backIP);
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.pause();
@@ -13,7 +14,10 @@ const VideoPlayer = ({ videoId }) => {
   });
   return (
     <video ref={videoRef} width="320" height="240" controls autoPlay>
-      <source src={`${ip}/videos/${videoId}`} type="video/mp4"></source>
+      <source
+        src={`http://${backIP}:3000/videos/${videoId}`}
+        type="video/mp4"
+      ></source>
       Your browser does not support the video tag.
     </video>
   );
